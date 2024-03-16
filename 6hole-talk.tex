@@ -209,11 +209,13 @@ fancyvrb=true,
 
 \author[Marijn Heule]{{\bf \large Marijn J.H. Heule}\\[5pt] joint work with Manfred Scheucher}
 
-%\institute[CMU and AWS]{\includegraphics[height=50pt]{images/CMU_Logo}~~~~~~~~\includegraphics[height=50pt]{images/scholars}}
+\institute[CMU and AWS]{\includegraphics[height=50pt]{images/CMU_Logo}~~~~~~~~\includegraphics[height=50pt]{images/scholars}}
 
 
-\institute[CMU]{\includegraphics[height=50pt]{images/CMU_Logo}}
+%\institute[CMU]{\includegraphics[height=50pt]{images/CMU_Logo}}
 
+
+\date{AWS Automated Reasoning Group ~~~~~~ March 14, 2023}
 
 %\date{Shonan Village\\October 3, 2023}
 
@@ -257,9 +259,6 @@ in \structure{general position} if no three points in $S$ are on a line.
 	
 \begin{center}
 \begin{tikzpicture}[scale=0.25]
-\vertex{13.52465}{62.02656}{6};
-\vertex{19.8803}{64.71728}{6};
-\vertex{36.07544}{71.57344}{6};
   \draw[shift={(11.2695, 61.0718)}, rotate=-15.4222, scale=1.2, thick]
     (0, 0)
      -- (19.2, 15.2);
@@ -269,6 +268,10 @@ in \structure{general position} if no three points in $S$ are on a line.
   \draw[shift={(22.2124, 62.3084)}, scale=0.6, structure, line width=3pt]
     (0, 0)
      -- (11.2, 13.6);
+     
+\vertex{13.52465}{62.02656}{10};
+\vertex{19.8803}{64.71728}{10};
+\vertex{36.07544}{71.57344}{10};
 \end{tikzpicture}
 \end{center}
 
@@ -278,7 +281,7 @@ in \structure{general position} if no three points in $S$ are on a line.
 
 \centering
 
-\structure{throughout this talk, every set is in general position}
+\structure{Throughout this talk, every set is in general position}
 
 }
 
@@ -335,6 +338,15 @@ A \structure{$k$-gon} (in S) is the vertex set of a convex $k$-gon
 $\forall k \in \mathbb{N}, \exists$ a smallest integer $g(k)$ such that every set of $g(k)$ points contains a $k$-gon.
 \end{theorem}
 
+\pause
+
+\centering
+
+\medskip
+
+\structure{
+Is SAT solving suitable to answer such questions? Yes!}
+
 }
 
 \frame{
@@ -354,17 +366,9 @@ Some sets of 4 points do not for a $4$-gon:
 \centering
 
 \begin{tikzpicture}[scale=1.5]
-\newcommand{\x}{2}
+\newcommand{\x}{1.5}
 
-  \draw [gray, thick] (0.423016, 4.503319) -- (2.303165, 7.383978);
-  \draw [gray, thick] (0.423016, 4.503319) -- (3.32398, 4.490406);
-  \draw [gray, thick] (0.423016, 4.503319) -- (2.167452, 5.411797);
-
-  \draw [gray, thick] (3.32398, 4.490406) -- (2.303165, 7.383978);
-  \draw [gray, thick] (2.167452, 5.411797) -- (3.32398, 4.490406);
-  \draw [gray, thick] (2.303165, 7.383978) -- (2.167452, 5.411797);
-
-  \draw[dashed, very thick]
+  \draw[gray, thick]
     (2.30317, 7.38398)
      -- (3.32398, 4.490406)
      -- (0.42302, 4.503321)
@@ -381,16 +385,12 @@ Some sets of 4 points do not for a $4$-gon:
 
 \pause
 
-
-
-\structure{how many points imply a $4$-gon?}
-
-
+\structure{How many points imply a $4$-gon?}
 
 }
 
 \frame{
-	\frametitle{Upperbound for $4$-Gon: $g(4) = 5$ \textcolor{xgreen}{[Klein]}}
+	\frametitle{Upperbound for $4$-Gon: $g(4) = 5$ \textcolor{xgreen}{[Klein, 1932]}}
 
 \large
 
@@ -474,6 +474,8 @@ Some sets of 4 points do not for a $4$-gon:
 
 \end{tikzpicture}
 
+\vspace{-20pt}
+
 \pause
 \pause
 	
@@ -512,6 +514,14 @@ Some sets of 4 points do not for a $4$-gon:
   
 
   \end{tikzpicture}	
+  
+\pause
+\pause
+\bigskip
+
+\centering
+
+\structure{Happy ending problem}
 
 }
 
@@ -519,10 +529,12 @@ Some sets of 4 points do not for a $4$-gon:
 	\frametitle{Bound Results for $5$-Gon and $6$-Gon}
 
 
+\large
+
 \begin{minipage}{0.45\textwidth}
 $g(5) = 9$
 \begin{itemize}
-\item \textcolor{xgreen}{[Kalbfleisch \& Stanton '70]}
+\item \textcolor{xgreen}{[Kalbfleisch \& Stanton '70]\!\!\!\!\!\!\!\!\!\!}
 \end{itemize}
 \end{minipage}
 \begin{minipage}{0.45\textwidth}
@@ -609,11 +621,12 @@ $g(5) = 9$
 \end{minipage}
 ~~~
 \begin{minipage}{0.45\textwidth}
+\medskip
 $g(6) = 17$
 \begin{itemize}
 \item Computer-assisted proof, 1500 CPU hours \textcolor{xgreen}{[SzekeresPeters '06]}
-\item One CPU hour using a SAT solver \textcolor{xgreen}{[Scheucher '18]}
-\item $20$ seconds using new encoding\!\!\!\!\!\!\!\!\!\!\!\!
+\item One CPU hour using a SAT solver \textcolor{xgreen}{[Scheucher '18]\!\!\!\!\!\!\!\!\!\!}
+\item Only $10$ seconds using new encoding\!\!\!\!\!\!\!\!\!\!\!\!
 \end{itemize}
 \end{minipage}
 
@@ -653,18 +666,12 @@ $g(k) \leq 2^{k+O(\sqrt{k log k})}$
 	
 \large
 
-A \structure{$k$-hole} (in $S$) is the vertex set of a convex $k$-gon
-containing no other points of $S$. We denote with \structure{$h(k)$} the smallest number of points that contain a $k$-hole.
+A \structure{$k$-hole} (in $S$) is a $k$-gon
+containing no other points of $S$. 
 
-\bigskip
+\medskip
 
-Erd\H{o}s, 1970’s: For $k$ fixed, does every sufficiently large
-point set contain $k$-holes?
-
-\bigskip
-\bigskip
-\centering
-
+\begin{center}
 \begin{tikzpicture}[scale=1.5]
 \newcommand\x{1}
   \filldraw[thick, draw=xgreen, fill=xgreen!30!white]
@@ -701,6 +708,16 @@ point set contain $k$-holes?
   \node
      at (4.46, 3.56) {not a $6$-hole};
 \end{tikzpicture}
+\end{center}
+
+\pause
+
+Let \structure{$h(k)$} denote the \structure{smallest} number of points that contain a $k$-hole.
+
+\bigskip
+
+Erd\H{o}s, 1970’s: For $k$ fixed, does every \structure{sufficiently large}
+point set contain $k$-holes?
 
 }
 
@@ -709,8 +726,8 @@ point set contain $k$-holes?
 
 \large
 
-A \structure{$k$-hole} (in $S$) is the vertex set of a convex $k$-gon
-containing no other points of $S$
+A \structure{$k$-hole} (in $S$) is a $k$-gon
+containing no other points of $S$. 
 
 \bigskip
 
@@ -749,17 +766,10 @@ Main open question: what about $6$-hole?
 	
 	
 	\begin{tikzpicture}[scale=1.5]
-\newcommand{\x}{2}
+\newcommand{\x}{1.5}
 
-  \draw [gray, thick] (0.423016, 4.503319) -- (2.303165, 7.383978);
-  \draw [gray, thick] (0.423016, 4.503319) -- (3.32398, 4.490406);
-  \draw [gray, thick] (0.423016, 4.503319) -- (2.167452, 5.411797);
 
-  \draw [gray, thick] (3.32398, 4.490406) -- (2.303165, 7.383978);
-  \draw [gray, thick] (2.167452, 5.411797) -- (3.32398, 4.490406);
-  \draw [gray, thick] (2.303165, 7.383978) -- (2.167452, 5.411797);
-
-  \draw[dashed, very thick]
+  \draw[ thick]
     (2.30317, 7.38398)
      -- (3.32398, 4.490406)
      -- (0.42302, 4.503321)
@@ -779,42 +789,51 @@ Main open question: what about $6$-hole?
 
 \large
 
+Recall that every set of 5 points contains a $4$-gon
+
+\bigskip
+
+Every $4$-gon is either a $4$-hole or contains a $4$-hole
+
+\bigskip
+\bigskip
+
    \newcommand{\x}{0.75}
 
 
 \centering
 	
 	
-\begin{tikzpicture}[scale=2.5]
-
-  \draw[shift={(1, 3.04)}, scale=1.5, thick]
-    (0, 0)
-     -- (0.64, 0.32)
-     -- (1.12, 0)
-     -- (0.8, -0.48)
-     -- (0.32, -0.48)
-     -- cycle;
-
-\only<2->{
-  \filldraw[shift={(1, 3.04)}, scale=1.5, draw=structure, very thick, fill=structure!30!white]
-    (0, 0)
-     -- (0.64, 0.32)
-     -- (1.12, 0)
- %    -- (0.8, -0.48)
-     -- (0.32, -0.48)
-     -- cycle;     
-}
-     
-  \vertex{2.2}{2.32}{\x};
-  \vertex{2.68}{3.04}{\x};
-  \vertex{1.96}{3.52}{\x};
-  \vertex{1}{3.04}{\x};
-  \vertex{1.48}{2.32}{\x};
-
-\end{tikzpicture}
-~~~~~~~~~~~~~~~~~~~~
-\pause
-\pause
+%\begin{tikzpicture}[scale=2.5]
+%
+%  \draw[shift={(1, 3.04)}, scale=1.5, thick]
+%    (0, 0)
+%     -- (0.64, 0.32)
+%     -- (1.12, 0)
+%     -- (0.8, -0.48)
+%     -- (0.32, -0.48)
+%     -- cycle;
+%
+%\only<2->{
+%  \filldraw[shift={(1, 3.04)}, scale=1.5, draw=structure, very thick, fill=structure!30!white]
+%    (0, 0)
+%     -- (0.64, 0.32)
+%     -- (1.12, 0)
+% %    -- (0.8, -0.48)
+%     -- (0.32, -0.48)
+%     -- cycle;     
+%}
+%     
+%  \vertex{2.2}{2.32}{\x};
+%  \vertex{2.68}{3.04}{\x};
+%  \vertex{1.96}{3.52}{\x};
+%  \vertex{1}{3.04}{\x};
+%  \vertex{1.48}{2.32}{\x};
+%
+%\end{tikzpicture}
+%~~~~~~~~~~~~~~~~~~~~
+%\pause
+%\pause
 \begin{tikzpicture}[scale=2.5]
   \draw[shift={(3.8, 2.32)}, scale=1.5, thick]
     (0, 0)
@@ -830,7 +849,7 @@ Main open question: what about $6$-hole?
     (0, 0)
      -- (0.8, 0.64);
 
-\only<4->{
+\only<2->{
   \filldraw[shift={(3.8, 3.52)}, scale=1.5, draw=structure, very thick, fill=structure!30!white]
     (0, 0)
      -- (0.16, -0.48)
@@ -854,44 +873,44 @@ Main open question: what about $6$-hole?
 
 \end{tikzpicture}
 
-\pause
-\pause
-	
-\begin{tikzpicture}[scale=2.5]
-     
-  
-    \draw[shift={(5.72, 2.56)}, scale=1.5]
-    (0, 0)
-     -- (1.28, 0.48);
-
-  \draw[shift={(5.96, 2.32)}, scale=1.5, thick]
-    (0, 0)
-     -- (0.48, 0.96)
-     -- (0.96, 0.16)
-     -- cycle;
-
-\only<6->{
-
-    \draw[shift={(5.72, 2.56)}, scale=1.5]
-    (0, 0)
-     -- (1.28, 0.48);
-     
-  \filldraw[shift={(5.96, 2.32)}, scale=1.5, draw=structure, very thick, fill=structure!30!white]
-    (0, 0)
-     -- (0.3426, 0.348475)
-     -- (0.59104, 0.44164)
-     -- (0.96, 0.16)
-     -- cycle;
- }
- 
-  \vertex{6.4739}{2.842713}{\x};
-  \vertex{6.84656}{2.98246}{\x};
-  \vertex{5.96}{2.32}{\x};
-  \vertex{6.68}{3.76}{\x};
-  \vertex{7.4}{2.56}{\x};
-  
-
-  \end{tikzpicture}
+%\pause
+%\pause
+%	
+%\begin{tikzpicture}[scale=2.5]
+%     
+%  
+%    \draw[shift={(5.72, 2.56)}, scale=1.5]
+%    (0, 0)
+%     -- (1.28, 0.48);
+%
+%  \draw[shift={(5.96, 2.32)}, scale=1.5, thick]
+%    (0, 0)
+%     -- (0.48, 0.96)
+%     -- (0.96, 0.16)
+%     -- cycle;
+%
+%\only<6->{
+%
+%    \draw[shift={(5.72, 2.56)}, scale=1.5]
+%    (0, 0)
+%     -- (1.28, 0.48);
+%     
+%  \filldraw[shift={(5.96, 2.32)}, scale=1.5, draw=structure, very thick, fill=structure!30!white]
+%    (0, 0)
+%     -- (0.3426, 0.348475)
+%     -- (0.59104, 0.44164)
+%     -- (0.96, 0.16)
+%     -- cycle;
+% }
+% 
+%  \vertex{6.4739}{2.842713}{\x};
+%  \vertex{6.84656}{2.98246}{\x};
+%  \vertex{5.96}{2.32}{\x};
+%  \vertex{6.68}{3.76}{\x};
+%  \vertex{7.4}{2.56}{\x};
+%  
+%
+%  \end{tikzpicture}
 	
 }
 
@@ -901,149 +920,83 @@ Main open question: what about $6$-hole?
 \large
 
 \begin{center}
-\begin{tikzpicture}[scale=1.7]
-\newcommand{\x}{0.75}
-\draw[shift={(1.26017, 1.37339)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (-5.85132, 3.87897);
-\draw[shift={(1.26017, 1.37339)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (-3.18788, 4.5182);
-\draw[shift={(1.26017, 1.37339)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (-1.79574, 1.53246);
-\draw[shift={(1.26017, 1.37339)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (-2.59075, 3.48411);
-\draw[shift={(1.26017, 1.37339)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (-1.60036, 2.7245);
-\draw[shift={(1.26017, 1.37339)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (-1.82854, 3.57324);
-\draw[shift={(1.26017, 1.37339)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (-0.38641, 2.91774);
-\draw[shift={(1.26017, 1.37339)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (0.06868, 5.92);
-\draw[shift={(3.69386, 5.06637)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (2.66344, 0.63923);
-\draw[shift={(3.69386, 5.06637)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (4.05558, -2.34651);
-\draw[shift={(3.69386, 5.06637)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (3.26057, -0.39486);
-\draw[shift={(3.69386, 5.06637)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (4.25096, -1.15447);
-\draw[shift={(3.69386, 5.06637)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (4.02278, -0.30573);
-\draw[shift={(3.69386, 5.06637)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (5.46491, -0.96123);
-\draw[shift={(3.69386, 5.06637)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (5.92, 2.04103);
-\draw[shift={(4.10115, 3.38951)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (1.39214, -2.98574);
-\draw[shift={(4.10115, 3.38951)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (0.59713, -1.03409);
-\draw[shift={(4.10115, 3.38951)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (1.58752, -1.7937);
-\draw[shift={(4.10115, 3.38951)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (1.35934, -0.94496);
-\draw[shift={(4.10115, 3.38951)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (2.80147, -1.60046);
-\draw[shift={(4.10115, 3.38951)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (3.25656, 1.4018);
-\draw[shift={(2.22253, 2.50734)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (-0.79501, 1.95165);
-\draw[shift={(2.22253, 2.50734)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (0.19538, 1.19204);
-\draw[shift={(2.22253, 2.50734)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (-0.0328, 2.04078);
-\draw[shift={(2.22253, 2.50734)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (1.40933, 1.38528);
-\draw[shift={(2.22253, 2.50734)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (1.86442, 4.38754);
-\draw[shift={(3.4507, 3.01154)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (0.99039, -0.75961);
-\draw[shift={(3.4507, 3.01154)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (0.76221, 0.08913);
-\draw[shift={(3.4507, 3.01154)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (2.20434, -0.56637);
-\draw[shift={(3.4507, 3.01154)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (2.65943, 2.43589);
-\draw[shift={(2.97385, 2.38629)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (-0.22818, 0.84874);
-\draw[shift={(2.97385, 2.38629)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (1.21395, 0.19324);
-\draw[shift={(2.97385, 2.38629)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (1.66904, 3.1955);
-\draw[shift={(3.50817, 2.53151)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (1.44213, -0.6555);
-\draw[shift={(3.50817, 2.53151)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (1.89722, 2.34676);
-\draw[shift={(3.09768, 1.62184)}, rotate=-89.8437, scale=0.63, gray]
-  (0, 0)
-   -- (0.45509, 3.00226);
-\vertex{1.26017}{1.37339}{\x};
-\vertex{3.69386}{5.06637}{\x};
-\vertex{4.10115}{3.38951}{\x};
-\vertex{2.22253}{2.50734}{\x};
-\vertex{3.4507}{3.01154}{\x};
-\vertex{2.97385}{2.38629}{\x};
-\vertex{3.50817}{2.53151}{\x};
-\vertex{3.09768}{1.62184}{\x};
-\vertex{4.98988}{1.34029}{\x};
-\draw[dashed]
-  (3.69386, 5.06637)
-   -- (4.98988, 1.34029)
-   -- (1.26017, 1.37339)
+\begin{tikzpicture}[scale=1.6]
+\newcommand{\x}{1.3}
+
+
+%\draw[gray, thick]
+%  (3.69386, 5.06637)
+%   -- (4.98988, 1.34029)
+%   -- (1.26017, 1.37339)
+%   -- cycle;
+%\draw[gray, thick]
+%  (2.22254, 2.50733)
+%   -- (4.10115, 3.38951)
+%   -- (3.09768, 1.62184)
+%   -- cycle;
+%\draw[gray, thick]
+%  (2.22254, 2.50733)
+%   -- (4.10115, 3.38951)
+%   -- (3.09768, 1.62184)
+%   -- cycle;
+%\draw[gray, thick]
+%  (2.97385, 2.38629)
+%   -- (3.4507, 3.01154)
+%   -- (3.50817, 2.53151)
+%   -- cycle;
+   
+%\vertex{1.26017}{1.37339}{\x};
+%\vertex{3.69386}{5.06637}{\x};
+%\vertex{4.10115}{3.38951}{\x};
+%\vertex{2.22253}{2.50734}{\x};
+%\vertex{3.4507}{3.01154}{\x};
+%\vertex{2.97385}{2.38629}{\x};
+%\vertex{3.50817}{2.53151}{\x};
+%\vertex{3.09768}{1.62184}{\x};
+%\vertex{4.98988}{1.34029}{\x};
+
+\draw[gray, thick]
+  (-0.3, 0)
+   -- (0.3, 0)
+   -- (0, 0.5)
    -- cycle;
-\draw[dashed]
-  (2.22254, 2.50733)
-   -- (4.10115, 3.38951)
-   -- (3.09768, 1.62184)
+   
+\draw[gray, thick]
+  (-0.75, 0.6)
+   -- (0.75, 0.6)
+   -- (0, -0.75)
    -- cycle;
-\draw[dashed]
-  (2.22254, 2.50733)
-   -- (4.10115, 3.38951)
-   -- (3.09768, 1.62184)
+
+\draw[gray, thick]
+  (-1.7, -0.9)
+   -- (1.5, -0.9)
+   -- (0.1, 2.3)
    -- cycle;
-\draw[dashed]
-  (2.97385, 2.38629)
-   -- (3.4507, 3.01154)
-   -- (3.50817, 2.53151)
-   -- cycle;
+
+\vertex{-0.3}{0}{\x};
+\vertex{0.3}{0}{\x};
+\vertex{0}{0.5}{\x};
+
+\vertex{0.75}{0.6}{\x};
+\vertex{-0.75}{0.6}{\x};
+\vertex{0}{-0.75}{\x};
+
+\vertex{1.5}{-0.9}{\x};
+\vertex{-1.7}{-0.9}{\x};
+\vertex{0.1}{2.3}{\x};
+
+%  \filldraw[shift={(0, 0)}, scale=1.5, draw=structure, very thick, fill=structure!30!white]
+%    (1.26017, 1.37339)
+%     -- (3.69386, {5.06637)
+%     -- (4.10115, 3.38951)
+%     -- (2.22253, 2.50734)
+%     -- cycle;
+ 
+
 \end{tikzpicture}
 \end{center}
 
-All 5-gons in these 9 points have an inner point: $h(5) = 10$
+All $5$-gons in these 9 points have an inner point: $h(5) = 10$
 	
 }
 
@@ -1052,14 +1005,110 @@ All 5-gons in these 9 points have an inner point: $h(5) = 10$
 
 \large
 
+\vspace{-10pt}
+
 \begin{center}
-	\includegraphics[width=.75\textwidth]{lb6hole.pdf}
+\begin{tikzpicture}[scale=0.5]
+
+%  \node at (8,12.5) {
+%  coordinates:};
+%  
+%  \node at (8,10) {
+%\begin{tabular}{r@{~~\,}r}
+%1 &1260 \\
+%16  &743\\
+%22 & 531\\
+%37 & 0\\
+%306 & 592\\
+%310 & 531\\
+%366 & 552\\
+%371 & 487\\
+%374 & 525\\
+%~& ~\\
+%  \end{tabular}
+%  };
+%
+%\node at (10,10) {
+%\begin{tabular}{r@{~~\,}r}
+%392 & 575 \\
+%396 & 613 \\
+%410 & 539 \\
+%416 & 550 \\
+%426 & 526 \\
+%434 & 552 \\
+%436 & 535 \\
+%446 & 565 \\
+%449 & 518 \\
+%450 & 498 \\
+%  \end{tabular}
+%  };  
+%  
+%\node at (12,10) {
+%\begin{tabular}{r@{~~\,}r}
+%453 & 542 \\
+%458 & 526 \\
+%489 & 537 \\
+%492 & 502 \\
+%496 & 579 \\
+%516 & 467 \\
+%552 & 502 \\
+%754 & 697 \\
+%777 & 194 \\
+%1259 & 320 \\
+%  \end{tabular}
+%  };  
+  
+  \tikzset{vertex/.style={draw, circle, fill=blue, scale=0.12}}
+     
+\node[vertex] (aa) at (0.05,12.60) {};
+\node[vertex] (ab) at (-.31,0) {};
+\node[vertex] (ac) at (-12.85,3.16) {};
+
+\node[vertex] (bb) at (-.16,7.43) {};
+\node[vertex] (ba) at (-.22,5.31) {};
+\node[vertex] (c) at (-3.06,5.92) {};
+\node[vertex] (d) at (-3.10,5.31) {};
+\node[vertex] (e) at (-3.66,5.52) {};
+\node[vertex] (f) at (-3.71,4.87) {};
+\node[vertex] (g) at (-3.74,5.25) {};
+\node[vertex] (h) at (-3.92,5.75) {};
+\node[vertex] (i) at (-3.96,6.13) {};
+\node[vertex] (j) at (-4.10,5.39) {};
+\node[vertex] (k) at (-4.16,5.50) {};
+\node[vertex] (l) at (-4.26,5.26) {};
+\node[vertex] (m) at (-4.34,5.52) {};
+\node[vertex] (n) at (-4.36,5.35) {};
+\node[vertex] (o) at (-4.46,5.65) {};
+\node[vertex] (p) at (-4.49,5.18) {};
+\node[vertex] (q) at (-4.50,4.98) {};
+\node[vertex] (r) at (-4.53,5.42) {};
+\node[vertex] (s) at (-4.58,5.26) {};
+\node[vertex] (t) at (-4.89,5.37) {};
+\node[vertex] (u) at (-4.92,5.02) {};
+\node[vertex] (v) at (-4.96,5.79) {};
+\node[vertex] (w) at (-5.16,4.67) {};
+\node[vertex] (x) at (-5.52,5.02) {};
+\node[vertex] (bc) at (-7.54,6.97) {};
+\node[vertex] (bd) at (-7.77,1.94) {};
+
+\draw[] (aa) -- (ab) -- (ac) -- (aa);
+\draw[] (ba) -- (bb) -- (bc) -- (bd) -- (ba);
+
+\draw[] (x) -- (v) -- (i) -- (c) -- (d) -- (f) --(w) -- (x)  ;
+
+\draw[] (t) -- (o)-- (h) -- (e) -- (g) --(q) --(u) --(t)  ;
+
+\draw[] (s) -- (r) -- (m)-- (k) -- (j) -- (l) -- (p) -- (s)  ;
+
+\end{tikzpicture}
 \end{center}
+
+\vspace{-10pt}
 
 29 points, no $6$-hole \textcolor{xgreen}{[Overmars ’02]}
 \begin{itemize}
 \item Found using simulated annealing... is now \structure{easy using SAT}
-\item This contains $7$-gon. Each $9$-gon contains a $6$-hole
+\item This contains $7$-gons. Each $9$-gon contains a $6$-hole
 \end{itemize}
 
 }
@@ -1249,6 +1298,8 @@ $2^3$ points, no 7-hole
 \large 
 \begin{minipage}{.62\textwidth}
 
+\bigskip
+
 No explicit \structure{coordinates} of points
 
 \bigskip
@@ -1258,16 +1309,24 @@ to denote whether point $c$ is above the line $ab$
 
 \bigskip
 
-Not all assignments are \structure{realizable}
-\begin{itemize}
-\item Realizability is a notoriously hard problem
-\textcolor{xgreen}{[Mnëv '88]}
-\end{itemize}
+Triple orientations are enough\\ 
+to express $k$-gons and $k$-holes
 
 \bigskip
 
-\structure{Axioms} (next slide) eliminate many\\
-unrealizable assignments
+\only<2->{
+WLOG points are \structure{sorted} from left to right\!\!\!\!\!\!\!\!
+
+\bigskip
+
+Not all assignments are \structure{realizable}
+\begin{itemize}
+\item Realizability is  hard 
+\textcolor{xgreen}{[Mnëv '88]}
+\item Additional clauses eliminate\\
+many unrealizable assignments
+\end{itemize}}
+
 
 \bigskip
 
@@ -1327,79 +1386,6 @@ unrealizable assignments
 	
 }
 
-\frame{
-	\frametitle{Axioms}
-
-\large
-
-$\forall a < b < c < d$: ``at most one sign change''
-
-
-\begin{center}
-\begin{minipage}{.5\textwidth}
-\begin{tikzpicture}[scale=1.3]
-\newcommand{\x}{1.5}
-\vertex{.32}{6.56}{\x};
-\vertex{1.12}{6.24}{\x};
-\vertex{1.92}{6.72}{\x};
-  \draw[shift={(.32, 6.56)}, scale=3.414]
-    (0, 0)
-     -- (.80, -.32);
-  \draw[shift={(1.12, 6.24001)}, scale=2.5322]
-    (0, 0)
-     -- (.80, .48);
-  \draw[shift={(3.5081, 6.8788)}, scale=1.9926]
-    (0, 0)
-     -- (-1.60, -.16);
-\only<4->{
-\vertexc{2.72}{5.12}{\x}{xorange};}
-\only<3->{
-\vertexc{2.72}{6.24}{\x}{cyan};}
-\only<2->{
-\vertexc{2.72}{7.04}{\x}{xgreen};}
-\vertexc{2.72}{7.68}{\x}{structure};
-  \node
-     at (.16, 6.24) {$a$};
-  \node
-     at (.96, 5.92) {$b$};
-  \node
-     at (1.76, 6.88) {$c$};
-  \node
-     at (2.72, 8.5) {$d$};
-  \node
-     at (2.72, 5) {$~$};
-\end{tikzpicture}
-
-\end{minipage}
-\begin{minipage}{.4\textwidth}
-
-
-\begin{tabular}{cccc}
-\toprule
-$O_{abc}$ & $O_{abd}$ & $O_{acd}$ & $O_{bcd}$\\
-\midrule
-\textcolor{structure}{$+$} & \textcolor{structure}{$+$} & \textcolor{structure}{$+$} & \textcolor{structure}{$+$}\\
-\pause
-\textcolor{xgreen}{$+$} & \textcolor{xgreen}{$+$} & \textcolor{xgreen}{$+$} & \textcolor{xgreen}{$-$}\\
-\pause
-\textcolor{cyan}{$+$} & \textcolor{cyan}{$+$} & \textcolor{cyan}{$-$} & \textcolor{cyan}{$-$}\\
-\pause
-\textcolor{xorange}{$+$} & \textcolor{xorange}{$-$} & \textcolor{xorange}{$-$} & \textcolor{xorange}{$-$}\\
-\pause
-$-$ & $-$ & $-$ & $-$\\
-$-$ & $-$ & $-$ & $+$\\
-$-$ & $-$ & $+$ & $+$\\
-$-$ & $+$ & $+$ & $+$\\
-\bottomrule
-\end{tabular}
-
-\end{minipage}
-\end{center}
-
-Block multiple sign changes with $\Theta(n^4)$ (ternary) clauses \textcolor{xgreen}{[Felsner \& Weil ’01]}
-
-
-}
 
 \iffalse
 \frame{
@@ -1594,59 +1580,150 @@ $\overline{z_{a,f}} \lor \overline{O_{a,b^{\prime},c^{\prime}}} \lor \overline{O
 
 \large
 
+\medskip
+
 We introduce \structure{inside variables} $I_{x;a,b,c}$ which are true
 if and only if point $x$ is in the triangle $abc$ with $a < x < b$
 or $b < x < c$.
 
 \bigskip
 
-\begin{minipage}{.6\textwidth}
-${I_{x;a,b,c}} \lor \overline{O_{a,b,c}} \lor {O_{a,x,b}} \lor \overline{O_{x,b,c}} \lor \overline{O_{a,x,c}}$\\[3pt]
-$\overline{I_{x;a,b,c}} \lor \overline{O_{a,b,c}} \lor \overline{O_{a,x,b}}$\\[3pt]
-$\overline{I_{x;a,b,c}} \lor \overline{O_{a,b,c}} \lor O_{x,b,c}$\\[3pt]
-$\overline{I_{x;a,b,c}} \lor \overline{O_{a,b,c}} \lor O_{a,x,c}$\\[3pt]
-\end{minipage}
-%\hfill
-\begin{minipage}{.35\textwidth}
-\begin{tikzpicture}
+%\begin{minipage}{.6\textwidth}
+%${I_{x;a,b,c}} \lor \overline{O_{a,b,c}} \lor {O_{a,x,b}} \lor \overline{O_{x,b,c}} \lor \overline{O_{a,x,c}}$\\[3pt]
+%$\overline{I_{x;a,b,c}} \lor \overline{O_{a,b,c}} \lor \overline{O_{a,x,b}}$\\[3pt]
+%$\overline{I_{x;a,b,c}} \lor \overline{O_{a,b,c}} \lor O_{x,b,c}$\\[3pt]
+%$\overline{I_{x;a,b,c}} \lor \overline{O_{a,b,c}} \lor O_{a,x,c}$\\[3pt]
+%\end{minipage}
+%%\hfill
+%\begin{minipage}{.35\textwidth}
+%\begin{tikzpicture}
+%
+%\node at (-0.3,-0.3) {$a$};
+%\node at (2.3,-0.3) {$b$};
+%\node at (3.3,1.8) {$c$};
+%\node at (1.5,0.25) {$x$};
+%\node[draw,circle, thick, fill=blue, scale=0.3] (a) at (0,0) {};
+%\node[draw,circle, thick, fill=blue, scale=0.3] (b) at (2,0) {};
+%\node[draw,circle, thick, fill=blue, scale=0.3] (c) at (3,1.5) {};
+%\node[draw,circle, thick, fill=blue, scale=0.3] (x) at (1.5,0.5) {};
+%\draw[gray] (a) -- (b) -- (c) -- (a);
+%\end{tikzpicture}
+%\end{minipage}
+%
+%\pause
+%\bigskip
+%
+%\begin{minipage}{.6\textwidth}
+%
+%${I_{x;a,b,c}} \lor {O_{a,b,c}} \lor \overline{O_{a,x,b}} \lor O_{x,b,c} \lor O_{a,x,c}$\\[3pt]
+%$\overline{I_{x;a,b,c}} \lor {O_{a,b,c}} \lor {O_{a,x,b}}$\\[3pt]
+%$\overline{I_{x;a,b,c}} \lor {O_{a,b,c}} \lor \overline{O_{x,b,c}}$\\[3pt]
+%$\overline{I_{x;a,b,c}} \lor {O_{a,b,c}} \lor \overline{O_{a,x,c}}$\\[3pt]
+%\end{minipage}
+%\begin{minipage}{.35\textwidth}
+%\bigskip
+%\begin{tikzpicture}
+%
+%\node at (-0.3,0.3) {$a$};
+%\node at (2.3,0.3) {$b$};
+%\node at (3.3,-1.8) {$c$};
+%\node at (1.5,-0.25) {$x$};
+%\node[draw,circle, thick, fill=blue, scale=0.3] (a) at (0,0) {};
+%\node[draw,circle, thick, fill=blue, scale=0.3] (b) at (2,0) {};
+%\node[draw,circle, thick, fill=blue, scale=0.3] (c) at (3,-1.5) {};
+%\node[draw,circle, thick, fill=blue, scale=0.3] (x) at (1.5,-0.5) {};
+%\draw[gray] (a) -- (b) -- (c) -- (a);
+%\end{tikzpicture}
+%\end{minipage}
 
-\node at (-0.3,-0.3) {$a$};
-\node at (2.3,-0.3) {$b$};
-\node at (3.3,1.8) {$c$};
-\node at (1.5,0.25) {$x$};
-\node[draw,circle, thick, fill=blue, scale=0.3] (a) at (0,0) {};
-\node[draw,circle, thick, fill=blue, scale=0.3] (b) at (2,0) {};
-\node[draw,circle, thick, fill=blue, scale=0.3] (c) at (3,1.5) {};
-\node[draw,circle, thick, fill=blue, scale=0.3] (x) at (1.5,0.5) {};
-\draw[gray] (a) -- (b) -- (c) -- (a);
+\medskip
+Four possible cases:
+\medskip
+
+{\normalsize
+\begin{minipage}{.24\textwidth}
+\begin{tikzpicture}
+\node at (-0.25,-0.1) {$a$};
+\node at (1.55,-0.1) {$b$};
+\node at (1.8,1.4) {$c$};
+\node at (1,0.15) {$x$};
+\node[draw, circle, fill=blue, scale=0.3] (a) at (0,0) {};
+\node[draw, circle, fill=blue, scale=0.3] (b) at (1.25,0) {};
+\node[draw, circle, fill=blue, scale=0.3] (c) at (2,1.25) {};
+\node[draw, circle, fill=blue, scale=0.3] (i) at (1,0.4) {};
+\draw[thick] (a) -- (b) -- (c) -- (a);
+\draw[-latex] (0.7,0) -- (0.7,0.3);
+\draw[-latex] (1.2,0.75) -- (1.35,0.5);
 \end{tikzpicture}
 \end{minipage}
+\hfil
+\begin{minipage}{.24\textwidth}
+\begin{tikzpicture}
+\node at (-0.25,0.1) {$a$};
+\node at (1.55,0.1) {$b$};
+\node at (1.8,-1.4) {$c$};
+\node at (1,-0.15) {$x$};
+\node[draw, circle, fill=blue, scale=0.3] (a) at (0,0) {};
+\node[draw, circle, fill=blue, scale=0.3] (b) at (1.25,0) {};
+\node[draw, circle, fill=blue, scale=0.3] (c) at (2,-1.25) {};
+\node[draw, circle, fill=blue, scale=0.3] (i) at (1,-0.4) {};
+\draw[thick] (a) -- (b) -- (c) -- (a);
+\draw[-latex] (0.7,0) -- (0.7,-0.3);
+\draw[-latex] (1.2,-0.75) -- (1.35,-0.5);
+\end{tikzpicture}
+\end{minipage}
+\hfil
+\begin{minipage}{.24\textwidth}
+\begin{tikzpicture}
+\node at (-0.25,-0.1) {$a$};
+\node at (1.55,-0.1) {$b$};
+\node at (1.8,1.4) {$c$};
+\node at (1.3,0.6) {$x$};
+\node[draw, circle, fill=blue, scale=0.3] (a) at (0,0) {};
+\node[draw, circle, fill=blue, scale=0.3] (b) at (1.25,0) {};
+\node[draw, circle, fill=blue, scale=0.3] (c) at (2,1.25) {};
+\node[draw, circle, fill=blue, scale=0.3] (i) at (1.5,0.8) {};
+\draw[thick] (a) -- (b) -- (c) -- (a);
+\draw[-latex] (0.8,0.5) -- (0.95,0.25);
+\draw[-latex] (1.40,0.25) -- (1.15,0.4);
+\end{tikzpicture}
+\end{minipage}
+\hfil
+\begin{minipage}{.24\textwidth}
+\begin{tikzpicture}
+\node at (-0.25,0.1) {$a$};
+\node at (1.55,0.1) {$b$};
+\node at (1.8,-1.4) {$c$};
+\node at (1.3,-0.6) {$x$};
+\node[draw, circle, fill=blue, scale=0.3] (a) at (0,-0) {};
+\node[draw, circle, fill=blue, scale=0.3] (b) at (1.25,-0) {};
+\node[draw, circle, fill=blue, scale=0.3] (c) at (2,-1.25) {};
+\node[draw, circle, fill=blue, scale=0.3] (i) at (1.5,-0.8) {};
+\draw[thick] (a) -- (b) -- (c) -- (a);
+\draw[-latex] (0.8,-0.5) -- (0.95,-0.25);
+\draw[-latex] (1.40,-0.25) -- (1.15,-0.4);
+\end{tikzpicture}
+\end{minipage}
+}
 
 \pause
 \bigskip
+\medskip
 
-\begin{minipage}{.6\textwidth}
+The left two cases with $a < x < b$:\\[-20pt]
+\begin{equation*}
+\!\!\!\!\!\!\!\!\!\!\!\! I_{x;abc} \leftrightarrow \Big(\big(O_{abc} \rightarrow (\overline{O_{axb}} ~\land~ O_{axc})\big)~\land~ 
+               \big(\overline{O_{abc}} \rightarrow (O_{axb} ~\land~ \overline{O_{axc}})\big)\Big)
+\end{equation*}
 
-${I_{x;a,b,c}} \lor {O_{a,b,c}} \lor \overline{O_{a,x,b}} \lor O_{x,b,c} \lor O_{a,x,c}$\\[3pt]
-$\overline{I_{x;a,b,c}} \lor {O_{a,b,c}} \lor {O_{a,x,b}}$\\[3pt]
-$\overline{I_{x;a,b,c}} \lor {O_{a,b,c}} \lor \overline{O_{x,b,c}}$\\[3pt]
-$\overline{I_{x;a,b,c}} \lor {O_{a,b,c}} \lor \overline{O_{a,x,c}}$\\[3pt]
-\end{minipage}
-\begin{minipage}{.35\textwidth}
-\bigskip
-\begin{tikzpicture}
 
-\node at (-0.3,0.3) {$a$};
-\node at (2.3,0.3) {$b$};
-\node at (3.3,-1.8) {$c$};
-\node at (1.5,-0.25) {$x$};
-\node[draw,circle, thick, fill=blue, scale=0.3] (a) at (0,0) {};
-\node[draw,circle, thick, fill=blue, scale=0.3] (b) at (2,0) {};
-\node[draw,circle, thick, fill=blue, scale=0.3] (c) at (3,-1.5) {};
-\node[draw,circle, thick, fill=blue, scale=0.3] (x) at (1.5,-0.5) {};
-\draw[gray] (a) -- (b) -- (c) -- (a);
-\end{tikzpicture}
-\end{minipage}
+
+The right two cases with $b < x < c$:\\[-20pt]
+\begin{equation*}
+\!\!\!\!\!\!\!\!\!\!\!\! I_{x;abc} \leftrightarrow \Big(\big(O_{abc} \rightarrow ({O_{axc}} ~\land~ \overline{O_{bxc}})\big)~\land~ 
+               \big(\overline{O_{abc}} \rightarrow (\overline{O_{axc}} ~\land~ {O_{bxc}})\big)\Big)
+%\insidep{i}{a}{b}{c} \leftrightarrow \Big(\big(\orientp{a}{b}{c} \rightarrow (\orientp{a}{i}{c} \land \orientn{b}{i}{c})\big) \land \big(\orientn{a}{b}{c} \rightarrow (\orientn{a}{i}{c} \land \orientp{b}{i}{c})\big)\Big)
+\end{equation*}
 
 %  printf ("%i %i %i 0\n", -d,  t, -abx);
 %  printf ("%i %i %i 0\n", -d,  t, -bcx);
@@ -1668,17 +1745,17 @@ $\overline{I_{x;a,b,c}} \lor {O_{a,b,c}} \lor \overline{O_{a,x,c}}$\\[3pt]
 	
 \large
 
-We introduce \structure{hole variables} $H_{a,b,c}$ which are true
+We introduce \structure{hole variables} $H_{abc}$ which are true
 if and only if no points occur with the triangle $abc$ with $a < b < c$.
 
 \medskip
 
 \[
-H_{a,b,c} \lor \bigvee_{a < x < c} {I_{x;a,b,c}}
+H_{abc} \lor \bigvee_{a < x < c} {I_{x;abc}}
 \]
 
 \[
-\bigwedge_{a < x < c} \overline{H_{a,b,c}} \lor \overline{I_{x;a,b,c}}~~~~~~~\mathrm{(redundant)}
+\bigwedge_{a < x < c} \overline{H_{abc}} \lor \overline{I_{x;abc}}~~~~~~~\mathrm{(redundant)}
 \]
 
 \bigskip
@@ -1687,7 +1764,7 @@ H_{a,b,c} \lor \bigvee_{a < x < c} {I_{x;a,b,c}}
 Simple $6$-hole encoding:
 
 \begin{center}
-$(\bigvee_{a,b,c \in X} \overline{H_{a,b,c}})$~~~~$\forall~X \subset S$ with $|X| = 6$
+$\bigvee_{a,b,c \in X} \overline{H_{abc}}$~~~~$\forall~X \subset S$ with $|X| = 6$
 \end{center}
 
 }
@@ -1791,61 +1868,126 @@ $\overline{H_{a,b,d}} \lor \overline{H_{a,d,f}} \lor \overline{H_{a,c,e}} \lor \
 \fi
 
 \frame{
-	\frametitle{$k$-Hole Encoding (I)}
+	\frametitle{$6$-Hole Encoding: One Triangle-is-Empty Check Required}
 
 \large
 
-Simple $6$-hole encoding with $O(n^6)$ clauses with \structure{20 literals}:
+Trusted $6$-hole encoding uses $O(n^6)$ clauses with \structure{20 literals}:
 \begin{center}
-$(\bigvee_{a,b,c \in X} \overline{H_{a,b,c}})$~~~~$\forall~X \subset S$ with $|X| = 6$
+$\bigvee_{a,b,c \in X} \overline{H_{abc}}$~~~~$\forall~X \subset S$ with $|X| = 6$
 \end{center}
 
-\medskip
-\pause
+\begin{example}
 
-Shorter clauses, thus \structure{more propagation}, but still $O(n^6)$
-
-\begin{minipage}{.52\textwidth}
-$O_{a,b,d} \lor O_{b,d,f} \lor \overline{O_{a,c,e}} \lor \overline{O_{c,e,f}}~\lor$
-$\overline{H_{a,b,d}} \lor \overline{H_{a,d,f}} \lor \overline{H_{a,c,e}} \lor \overline{H_{a,e,f}}$
+\begin{minipage}{.6\textwidth}
+\smallskip
+Consider an assignment with
+\begin{itemize}
+\item $O_{abd} = 0$ and $O_{bdf} = 0$
+\item $O_{ace} = 1$ and $O_{cef} = 1$
+\only<1>{\vspace{35pt}}
+\only<2->{
+\item $H_{ade} = 1$}
+\end{itemize}
+\only<2->{
+This implies the \structure{existence of a $6$-hole}!}
 \end{minipage}
-\hfill
-\begin{minipage}{.45\textwidth}
-\begin{tikzpicture}[xscale=0.8]
-\node at (-0.3,0.3) {$a$};
+\begin{minipage}{.38\textwidth}
+\begin{tikzpicture}[scale=1.2]
+\node at (0,0.4) {$a$};
 \node at (0.8,1) {$b$};
 \node at (1.9,-1.3) {$c$};
-\node at (3.1,1.3) {$d$};
-\node at (4.2,-1) {$e$};
-\node at (5.3,0.3) {$f$};
-\node[draw,circle, thick, fill=blue, scale=0.3] (a) at (0,0) {};
-\node[draw,circle, thick, fill=blue, scale=0.3] (b) at (1,0.7) {};
-\node[draw,circle, thick, fill=blue, scale=0.3] (c) at (2,-1) {};
-\node[draw,circle, thick, fill=blue, scale=0.3] (d) at (3,1) {};
-\node[draw,circle, thick, fill=blue, scale=0.3] (e) at (4,-0.7) {};
-\node[draw,circle, thick, fill=blue, scale=0.3] (f) at (5,0) {};
-\draw[gray, thick] (a) -- (b) -- (d) -- (f) -- (e) -- (c) -- (a);
-\draw[gray] (a) -- (b) -- (d) -- (a);
-\draw[gray] (a) -- (c) -- (e) -- (a);
-\draw[gray] (a) -- (e) -- (f) -- (a);
-\draw[gray] (a) -- (d) -- (f) -- (a);
+\node at (3.1,1) {$d$};
+\node at (3.1,-1) {$e$};
+\node at (3.6,0.3) {$f$};
+
+% only works with coordinates
+\only<2->{
+\filldraw[draw=structure, thick, fill=structure!30!white]
+(0,0) -- (2.8,0.7) -- (3.1,-0.5) -- cycle;}
+
+\node[draw,circle, fill=blue, scale=0.3] (a) at (0,0) {};
+\node[draw,circle, fill=blue, scale=0.3] (b) at (1,0.8) {};
+\node[draw,circle, fill=blue, scale=0.3] (c) at (2,-0.9) {};
+\node[draw,circle, fill=blue, scale=0.3] (d) at (2.8,0.7) {};
+\node[draw,circle, fill=blue, scale=0.3] (e) at (3.1,-0.5) {};
+\node[draw,circle, fill=blue, scale=0.3] (f) at (3.5,0) {};
+\draw[black, thick] (a) -- (b) -- (d) -- (f) -- (e) -- (c) -- (a);
 \end{tikzpicture}
 \end{minipage}
 
-\medskip
 \pause
+\pause
+\bigskip
 
-\structure{Auxiliary variables} make an $O(n^4)$ clauses encoding possible
-\begin{eqnarray*}
-&\!\!\!\!\!\!\!\!\!\!\!\!\!\! x_{a,f} \lor O_{a,b,d} \lor O_{b,d,f} \lor \overline{H_{a,b,d}} \lor \overline{H_{a,d,f}}&\mathrm{with~}a < b < d < f\\
-&\!\!\!\!\!\!\!\!\!\!\!\!\!\! \overline{x_{a,f}} \lor \overline{O_{a,c,e}} \lor \overline{O_{c,e,f}} \lor \overline{H_{a,c,e}} \lor \overline{H_{a,e,f}}&\mathrm{with~}a < c < e < f
-\end{eqnarray*}
+Clause to prevent this: $O_{abd} \lor O_{bdf} \lor \overline{O_{ace}} \lor \overline{O_{cef}} \lor \overline{H_{ade}}$\!\!\!\!\!\!\!\!
+
+
+\end{example}
+
+\pause 
+\bigskip
+
+\structure{This encoding is 16 times larger, but much easier to solve}
+
 
 }
+%\frame{
+%	\frametitle{$k$-Hole Encoding (I)}
+%
+%\large
+%
+%Simple $6$-hole encoding with $O(n^6)$ clauses with \structure{20 literals}:
+%\begin{center}
+%$(\bigvee_{a,b,c \in X} \overline{H_{a,b,c}})$~~~~$\forall~X \subset S$ with $|X| = 6$
+%\end{center}
+%
+%\medskip
+%\pause
+%
+%Shorter clauses, thus \structure{more propagation}, but still $O(n^6)$
+%
+%\begin{minipage}{.52\textwidth}
+%$O_{a,b,d} \lor O_{b,d,f} \lor \overline{O_{a,c,e}} \lor \overline{O_{c,e,f}}~\lor$
+%$\overline{H_{a,b,d}} \lor \overline{H_{a,d,f}} \lor \overline{H_{a,c,e}} \lor \overline{H_{a,e,f}}$
+%\end{minipage}
+%\hfill
+%\begin{minipage}{.45\textwidth}
+%\begin{tikzpicture}[xscale=0.8]
+%\node at (-0.3,0.3) {$a$};
+%\node at (0.8,1) {$b$};
+%\node at (1.9,-1.3) {$c$};
+%\node at (3.1,1.3) {$d$};
+%\node at (4.2,-1) {$e$};
+%\node at (5.3,0.3) {$f$};
+%\node[draw,circle, thick, fill=blue, scale=0.3] (a) at (0,0) {};
+%\node[draw,circle, thick, fill=blue, scale=0.3] (b) at (1,0.7) {};
+%\node[draw,circle, thick, fill=blue, scale=0.3] (c) at (2,-1) {};
+%\node[draw,circle, thick, fill=blue, scale=0.3] (d) at (3,1) {};
+%\node[draw,circle, thick, fill=blue, scale=0.3] (e) at (4,-0.7) {};
+%\node[draw,circle, thick, fill=blue, scale=0.3] (f) at (5,0) {};
+%\draw[gray, thick] (a) -- (b) -- (d) -- (f) -- (e) -- (c) -- (a);
+%\draw[gray] (a) -- (b) -- (d) -- (a);
+%\draw[gray] (a) -- (c) -- (e) -- (a);
+%\draw[gray] (a) -- (e) -- (f) -- (a);
+%\draw[gray] (a) -- (d) -- (f) -- (a);
+%\end{tikzpicture}
+%\end{minipage}
+%
+%\medskip
+%\pause
+%
+%\structure{Auxiliary variables} make an $O(n^4)$ clauses encoding possible
+%\begin{eqnarray*}
+%&\!\!\!\!\!\!\!\!\!\!\!\!\!\! x_{a,f} \lor O_{a,b,d} \lor O_{b,d,f} \lor \overline{H_{a,b,d}} \lor \overline{H_{a,d,f}}&\mathrm{with~}a < b < d < f\\
+%&\!\!\!\!\!\!\!\!\!\!\!\!\!\! \overline{x_{a,f}} \lor \overline{O_{a,c,e}} \lor \overline{O_{c,e,f}} \lor \overline{H_{a,c,e}} \lor \overline{H_{a,e,f}}&\mathrm{with~}a < c < e < f
+%\end{eqnarray*}
+%
+%}
 
 
 \frame{
-	\frametitle{$k$-Hole Encoding (II)}
+	\frametitle{$k$-Hole Encoding Using $O(n^4)$ Clauses}
 
 \large
 
@@ -1853,54 +1995,374 @@ Shorter clauses, thus \structure{more propagation}, but still $O(n^6)$
 
 \bigskip
 
-\begin{minipage}{.52\textwidth}
-%\centering
-\medskip
-$O_{a,b,c} \lor O_{b,c,d} \lor O_{c,d,e} \lor O_{d,e,f}~\lor$\\[3pt]
-$\overline{H_{a,b,c}} \lor \overline{H_{a,c,d}} \lor \overline{H_{a,d,e}} \lor \overline{H_{a,e,f}}$\\
+\begin{example}
+
+\begin{minipage}{.6\textwidth}
+\smallskip
+Introduce $O(n^3)$ auxiliary variables: 
+\begin{itemize}
+\item $A_{acd}$: a $4$-gon \structure{above} the line $ad$\\[5pt]
+        $\overline{O_{abc}} \land \overline{O_{bcd}} \rightarrow A_{acd}$
+\item $B_{ac'd}$: a $4$-gon \structure{below} the line $ad$\\[5pt]
+        ${O_{ab'c'}} \land {O_{b'c'd}} \rightarrow B_{ac'd}$
+\item Combine them to \structure{block} $6$-holes\\[5pt]
+         $\overline{A_{acd}} \lor \overline{B_{ac'd}} \lor \overline{H_{acc'}}$
+\end{itemize}
 \end{minipage}
-\hfill
-\begin{minipage}{.45\textwidth}
-\centering
-\begin{tikzpicture}[xscale=0.8]
-\node at (-0.3,0.3) {$a$};
+\begin{minipage}{.38\textwidth}
+\begin{tikzpicture}[scale=1.2]
+\node at (0,0.4) {$a$};
 \node at (0.8,1) {$b$};
-\node at (1.9,1.3) {$c$};
-\node at (3.1,1.3) {$d$};
-\node at (4.2,1) {$e$};
-\node at (5.3,0.3) {$f$};
-\node[draw,circle, thick, fill=blue, scale=0.3] (a) at (0,0) {};
-\node[draw,circle, thick, fill=blue, scale=0.3] (b) at (1,0.7) {};
-\node[draw,circle, thick, fill=blue, scale=0.3] (c) at (2,1) {};
-\node[draw,circle, thick, fill=blue, scale=0.3] (d) at (3,1) {};
-\node[draw,circle, thick, fill=blue, scale=0.3] (e) at (4,0.7) {};
-\node[draw,circle, thick, fill=blue, scale=0.3] (f) at (5,0) {};
-\draw[gray, thick] (a) -- (b) -- (c) -- (d) -- (e) -- (f) -- (a);
-\draw[gray] (a) -- (b) -- (c) -- (a);
-\draw[gray] (a) -- (c) -- (d) -- (a);
-\draw[gray] (a) -- (d) -- (e) -- (a);
-\draw[gray] (a) -- (e) -- (f) -- (a);
+\node at (1.9,-1.3) {$b'$};
+\node at (3.1,1) {$c$};
+\node at (3.1,-1) {$c'$};
+\node at (3.6,0.3) {$d$};
+
+% only works with coordinates
+\filldraw[draw=structure, thick, fill=structure!30!white]
+(0,0) -- (2.8,0.7) -- (3.1,-0.5) -- cycle;
+
+\node[draw,circle, fill=blue, scale=0.3] (a) at (0,0) {};
+\node[draw,circle, fill=blue, scale=0.3] (b) at (1,0.8) {};
+\node[draw,circle, fill=blue, scale=0.3] (c) at (2,-0.9) {};
+\node[draw,circle, fill=blue, scale=0.3] (d) at (2.8,0.7) {};
+\node[draw,circle, fill=blue, scale=0.3] (e) at (3.1,-0.5) {};
+\node[draw,circle, fill=blue, scale=0.3] (f) at (3.5,0) {};
+\draw[black, thick] (a) -- (b) -- (d) -- (f) -- (e) -- (c) -- (a);
+
+\draw[structure, very thick] (a) -- (f);
 \end{tikzpicture}
 \end{minipage}
 
+\end{example}
+
+
 \bigskip
-\bigskip
+
+This reduces the size of the encoding to $O(n^4)$ clauses
+
+}
+
+%\frame{
+%	\frametitle{$k$-Hole Encoding (II)}
+%
+%\large
+%
+%Shorter clauses, thus \structure{more propagation}, but still $O(n^6)$
+%
+%\bigskip
+%
+%\begin{minipage}{.52\textwidth}
+%%\centering
+%\medskip
+%$O_{a,b,c} \lor O_{b,c,d} \lor O_{c,d,e} \lor O_{d,e,f}~\lor$\\[3pt]
+%$\overline{H_{a,b,c}} \lor \overline{H_{a,c,d}} \lor \overline{H_{a,d,e}} \lor \overline{H_{a,e,f}}$\\
+%\end{minipage}
+%\hfill
+%\begin{minipage}{.45\textwidth}
+%\centering
+%\begin{tikzpicture}[xscale=0.8]
+%\node at (-0.3,0.3) {$a$};
+%\node at (0.8,1) {$b$};
+%\node at (1.9,1.3) {$c$};
+%\node at (3.1,1.3) {$d$};
+%\node at (4.2,1) {$e$};
+%\node at (5.3,0.3) {$f$};
+%\node[draw,circle, thick, fill=blue, scale=0.3] (a) at (0,0) {};
+%\node[draw,circle, thick, fill=blue, scale=0.3] (b) at (1,0.7) {};
+%\node[draw,circle, thick, fill=blue, scale=0.3] (c) at (2,1) {};
+%\node[draw,circle, thick, fill=blue, scale=0.3] (d) at (3,1) {};
+%\node[draw,circle, thick, fill=blue, scale=0.3] (e) at (4,0.7) {};
+%\node[draw,circle, thick, fill=blue, scale=0.3] (f) at (5,0) {};
+%\draw[gray, thick] (a) -- (b) -- (c) -- (d) -- (e) -- (f) -- (a);
+%\draw[gray] (a) -- (b) -- (c) -- (a);
+%\draw[gray] (a) -- (c) -- (d) -- (a);
+%\draw[gray] (a) -- (d) -- (e) -- (a);
+%\draw[gray] (a) -- (e) -- (f) -- (a);
+%\end{tikzpicture}
+%\end{minipage}
+%
+%\bigskip
+%\bigskip
+%\pause
+%
+%\structure{Auxiliary variables} make an $O(n^4)$ clauses encoding possible
+%\begin{eqnarray*}
+%&\!\!\!\!\!\!\!\!\!\!\!\!\!\! y_{a,c,d} \lor O_{a,b,c} \lor O_{b,c,d} \lor \overline{H_{a,b,c}} \lor \overline{H_{a,c,d}}&\mathrm{with~}a < b < c < d\\
+%&\!\!\!\!\! z_{a,d,e} \lor \overline{O_{c,d,e}} \lor \overline{H_{a,d,e}} \lor \overline{y_{a,c,d}}&\mathrm{with~}a < c < d < e\\
+%&\!\!\!\!\!  \overline{O_{d,e,f}} \lor \overline{H_{a,e,f}} \lor \overline{z_{a,d,e}}&\mathrm{with~}a < d < e < f
+%\end{eqnarray*}
+%
+%
+%
+%
+%}
+
+
+%\iffalse
+\frame{
+	\frametitle{Symmetry Breaking: Sorted \& Rotated Around Point 1}
+
+   \newcommand{\xa}{0}  \newcommand{\ya}{0}
+   \newcommand{\xb}{1.5}  \newcommand{\yb}{0.2}
+   \newcommand{\xc}{2.5}  \newcommand{\yc}{1.8}
+   \newcommand{\xd}{1.3}  \newcommand{\yd}{1.9}
+   \newcommand{\xe}{0.5}  \newcommand{\ye}{1.7}
+   
+   \newcommand{\ep}{0.5}
+      
+    \newcommand{\x}{6}
+	
+    \begin{minipage}{.48\textwidth}
+    \centering
+    \resizebox{!}{80pt}{
+    \begin{tikzpicture}
+    
+    \draw (-0.5,0) -- (3,0);
+    \draw (0,-1.5) -- (0,1.5);
+    
+%    \begin{scope}
+%    \vertex{0}{0}{\x}; \node at (0,0) {\textcolor{white}{1}};
+%    \vertex{0.7}{0.8}{\x}; \node at (0.7,0.8) {\textcolor{white}{5}};
+%    \vertex{0.9}{-1}{\x}; \node at (0.9,-1) {\textcolor{white}{2}};
+%    \vertex{1.2}{0.7}{\x}; \node at (1.2,0.7) {\textcolor{white}{4}};
+%    \vertex{1.5}{-0.9}{\x}; \node at (1.5,-0.9) {\textcolor{white}{3}};
+%    \end{scope}
+     \begin{scope}[xscale=0.5]
+        \begin{scope}[rotate=-45]
+      \vertex{\xa}{\ya}{\x}; \node at (\xa,\ya) {\textcolor{white}{1}};
+      \vertex{\xb}{\yb}{\x}; \node at (\xb,\yb) {\textcolor{white}{2}};
+      \vertex{\xc}{\yc}{\x}; \node at (\xc,\yc) {\textcolor{white}{3}};
+      \vertex{\xd}{\yd}{\x}; \node at (\xd,\yd) {\textcolor{white}{4}};
+      \vertex{\xe}{\ye}{\x}; \node at (\xe,\ye) {\textcolor{white}{5}};
+      \end{scope}
+    \end{scope}
+  
+    \vertex{0}{0}{\x}; \node at (0,0) {\textcolor{white}{1}};
+    \vertex{0.61}{-0.92}{\x}; \node at (0.61,-0.92) {\textcolor{white}{2}};
+    \vertex{1.51}{-0.495}{\x}; \node at (1.51,-0.495) {\textcolor{white}{3}};
+    \vertex{1.13}{0.42}{\x}; \node at (1.13,0.42) {\textcolor{white}{4}};
+    \vertex{0.79}{0.85}{\x}; \node at (0.79,0.85) {\textcolor{white}{5}};
+
+    
+    \end{tikzpicture}}
+    
+    
+    \smallskip
+    place leftmost point at origin
+    \phantom{place leftmost point at origin}
+    \end{minipage}
+    \begin{minipage}{.48\textwidth}
+    \centering
+    \resizebox{!}{80pt}{
+    \begin{tikzpicture}
+    
+    \draw (-0.5,0) -- (3,0);
+    \draw (0,-1.5) -- (0,1.5);
+    \draw (0,0) -- (1.5,-1.5);
+    \draw (0,0) -- (1.5,1.5);
+    
+    \begin{scope}[rotate=-45]
+    \vertex{\xa}{\ya}{\x}; \node at (\xa,\ya) {\textcolor{white}{1}};
+    \vertex{\xb}{\yb}{\x}; \node at (\xb,\yb) {\textcolor{white}{2}};
+    \vertex{\xc}{\yc}{\x}; \node at (\xc,\yc) {\textcolor{white}{3}};
+    \vertex{\xd}{\yd}{\x}; \node at (\xd,\yd) {\textcolor{white}{4}};
+    \vertex{\xe}{\ye}{\x}; \node at (\xe,\ye) {\textcolor{white}{5}};
+%    \vertex{0}{0}{\x}; \node at (0,0) {\textcolor{white}{1}};
+%    \vertex{1.4}{0.8}{\x}; \node at (1.4,0.8) {\textcolor{white}{5}};
+%    \vertex{1.8}{-1}{\x}; \node at (1.8,-1) {\textcolor{white}{2}};
+%    \vertex{2.4}{0.7}{\x}; \node at (2.4,0.7) {\textcolor{white}{4}};
+%    \vertex{3}{-0.9}{\x}; \node at (3,-0.9) {\textcolor{white}{3}};
+    \end{scope}
+    
+    \end{tikzpicture}}
+    \smallskip
+    
+    stretch points to the right to be\\[-1pt] within $y=x$ and $y=-x$
+    \end{minipage}
+    
+    \bigskip
+    
+        \begin{minipage}{.48\textwidth}
+    \centering
+    \resizebox{!}{80pt}{
+    \begin{tikzpicture}
+    
+     \draw (-0.5,0) -- (3,0);
+     \draw (0,-0.5) -- (0,2.5);
+    
+    \vertex{\xa}{\ya}{\x}; \node at (\xa,\ya) {\textcolor{white}{1}};
+    \vertex{\xb}{\yb}{\x}; \node at (\xb,\yb) {\textcolor{white}{2}};
+    \vertex{\xc}{\yc}{\x}; \node at (\xc,\yc) {\textcolor{white}{3}};
+    \vertex{\xd}{\yd}{\x}; \node at (\xd,\yd) {\textcolor{white}{4}};
+    \vertex{\xe}{\ye}{\x}; \node at (\xe,\ye) {\textcolor{white}{5}};
+
+    
+%    \begin{scope}[rotate=45]
+%    \vertex{0}{0}{\x}; \node at (0,0) {\textcolor{white}{1}};
+%    \vertex{1.4}{0.8}{\x}; \node at (1.4,0.8) {\textcolor{white}{5}};
+%    \vertex{1.8}{-1}{\x}; \node at (1.8,-1) {\textcolor{white}{2}};
+%    \vertex{2.4}{0.7}{\x}; \node at (2.4,0.7) {\textcolor{white}{4}};
+%    \vertex{3}{-0.9}{\x}; \node at (3,-0.9) {\textcolor{white}{3}};
+%    \end{scope}
+    
+    \end{tikzpicture}}
+    
+    rotate by 45 degrees
+    
+    \end{minipage}
+    \begin{minipage}{.48\textwidth}
+    \centering
+    
+    
+    \resizebox{!}{80pt}{\begin{tikzpicture}
+    
+     \draw (-0.5,0) -- (3,0);
+     \draw (0,-0.5) -- (0,2.5);
+    
+%    \vertex{0}{0}{\x}; \node at (0,0) {\textcolor{white}{1}};
+%    \vertex{1.8}{0.4}{\x}; \node at (1.8,0.4) {\textcolor{white}{2}};
+%    \vertex{2.5}{1.2}{\x}; \node at (2.5,1.2) {\textcolor{white}{3}};
+%    \vertex{1}{2.1}{\x}; \node at (1,2.1) {\textcolor{white}{4}};
+%    \vertex{0.3}{1.4}{\x}; \node at (0.3,1.4) {\textcolor{white}{5}};
+    
+      \vertex{{\ya/(\xa+\ep)}}{{1/(\xa+\ep)}}{\x}; \node at ({\ya/(\xa+\ep)},{1/(\xa+\ep)}) {\textcolor{white}{1}};
+      \vertex{{\yb/(\xb+\ep)}}{{1/(\xb+\ep)}}{\x}; \node at ({\yb/(\xb+\ep)},{1/(\xb+\ep)}) {\textcolor{white}{2}};
+      \vertex{{\yc/(\xc+\ep)}}{{1/(\xc+\ep)}}{\x}; \node at ({\yc/(\xc+\ep)},{1/(\xc+\ep)}) {\textcolor{white}{3}};
+      \vertex{{\yd/(\xd+\ep)}}{{1/(\xd+\ep)}}{\x}; \node at ({\yd/(\xd+\ep)},{1/(\xd+\ep)}) {\textcolor{white}{4}};
+      \vertex{{\ye/(\xe+\ep)}}{{1/(\xe+\ep)}}{\x}; \node at ({\ye/(\xe+\ep)},{1/(\xe+\ep)}) {\textcolor{white}{5}};
+    
+%    \vertex{0}{5}{\x}; \node at (0,5) {\textcolor{white}{1}};
+%    \vertex{0.4/1.8}{1/1.8}{\x}; \node at (0.4/1.8,1/1.8) {\textcolor{white}{2}};
+%    \vertex{1.2/2.5}{1/2.5}{\x}; \node at (1.2/2.5,1/2.5) {\textcolor{white}{3}};
+%    \vertex{2.1/1}{1/1}{\x}; \node at (2.1/1,1/1) {\textcolor{white}{4}};
+%    \vertex{1.4/0.3}{1/0.3}{\x}; \node at (1.4/0.3,1/0.3) {\textcolor{white}{5}};
+%    \begin{scope}
+%    \vertex{0}{0}{\x}; \node at (0,0) {\textcolor{white}{1}};
+%    \vertex{1.4}{1.2}{\x}; \node at (1.4,1.2) {\textcolor{white}{5}};
+%    \vertex{3}{-1}{\x}; \node at (3,-1) {\textcolor{white}{2}};
+%    \vertex{4}{0.7}{\x}; \node at (4,0.7) {\textcolor{white}{3}};
+%    \vertex{5}{1.3}{\x}; \node at (5,1.3) {\textcolor{white}{4}};
+%    \end{scope}
+    
+    \end{tikzpicture}}
+    
+    projective transformation $(x,y) \mapsto (y/(x+\epsilon),1/(x+\epsilon))$
+    \end{minipage}
+
+}
+%\fi
+
+\frame{
+	\frametitle{Realizability Constraints}
+
+\large
+
+Under the assumption that points are sorted from left to right
+%$\forall a < b < c < d$: ``at most one sign change''
+
+
+\begin{center}
+\begin{minipage}{.5\textwidth}
+\begin{tikzpicture}[scale=1.3]
+\newcommand{\x}{1.5}
+\vertex{.32}{6.56}{\x};
+\vertex{1.12}{6.24}{\x};
+\vertex{1.92}{6.72}{\x};
+  \draw[shift={(.32, 6.56)}, scale=3.414]
+    (0, 0)
+     -- (.80, -.32);
+  \draw[shift={(1.12, 6.24001)}, scale=2.5322]
+    (0, 0)
+     -- (.80, .48);
+  \draw[shift={(3.5081, 6.8788)}, scale=1.9926]
+    (0, 0)
+     -- (-1.60, -.16);
+\only<4->{
+\vertexc{2.72}{5.12}{\x}{xorange};}
+\only<3->{
+\vertexc{2.72}{6.24}{\x}{cyan};}
+\only<2->{
+\vertexc{2.72}{7.04}{\x}{xgreen};}
+\vertexc{2.72}{7.68}{\x}{structure};
+  \node
+     at (.16, 6.24) {$a$};
+  \node
+     at (.96, 5.92) {$b$};
+  \node
+     at (1.76, 6.88) {$c$};
+  \node
+     at (2.72, 8.5) {$d$};
+  \node
+     at (2.72, 5) {$~$};
+\end{tikzpicture}
+
+\end{minipage}
+\begin{minipage}{.4\textwidth}
+
+
+\begin{tabular}{cccc}
+\toprule
+$O_{abc}$ & $O_{abd}$ & $O_{acd}$ & $O_{bcd}$\\
+\midrule
+\textcolor{structure}{$+$} & \textcolor{structure}{$+$} & \textcolor{structure}{$+$} & \textcolor{structure}{$+$}\\
 \pause
+\textcolor{xgreen}{$+$} & \textcolor{xgreen}{$+$} & \textcolor{xgreen}{$+$} & \textcolor{xgreen}{$-$}\\
+\pause
+\textcolor{cyan}{$+$} & \textcolor{cyan}{$+$} & \textcolor{cyan}{$-$} & \textcolor{cyan}{$-$}\\
+\pause
+\textcolor{xorange}{$+$} & \textcolor{xorange}{$-$} & \textcolor{xorange}{$-$} & \textcolor{xorange}{$-$}\\
+\pause
+$-$ & $-$ & $-$ & $-$\\
+$-$ & $-$ & $-$ & $+$\\
+$-$ & $-$ & $+$ & $+$\\
+$-$ & $+$ & $+$ & $+$\\
+\bottomrule
+\end{tabular}
 
-\structure{Auxiliary variables} make an $O(n^4)$ clauses encoding possible
-\begin{eqnarray*}
-&\!\!\!\!\!\!\!\!\!\!\!\!\!\! y_{a,c,d} \lor O_{a,b,c} \lor O_{b,c,d} \lor \overline{H_{a,b,c}} \lor \overline{H_{a,c,d}}&\mathrm{with~}a < b < c < d\\
-&\!\!\!\!\! z_{a,d,e} \lor \overline{O_{c,d,e}} \lor \overline{H_{a,d,e}} \lor \overline{y_{a,c,d}}&\mathrm{with~}a < c < d < e\\
-&\!\!\!\!\!  \overline{O_{d,e,f}} \lor \overline{H_{a,e,f}} \lor \overline{z_{a,d,e}}&\mathrm{with~}a < d < e < f
-\end{eqnarray*}
+\end{minipage}
+\end{center}
 
-
+Block multiple sign changes with $\Theta(n^4)$ (ternary) clauses \textcolor{xgreen}{[Felsner \& Weil ’01]}
 
 
 }
 
 \section{Results}
 \frame{\Large \tableofcontents[currentsection]}
+
+
+\frame{
+	\frametitle{Impact of the Encoding}
+
+\large
+
+Four different encodings of a random subproblem
+\begin{itemize}
+\item $T$: the trusted encoding
+\item $O_1$: the explicit encoding with a single empty triangle
+\item $O_2$: reduce the size of $O_1$ with auxiliary variables to $O(n^4)$
+\item $O_3$: $O_2$ without redundant clauses
+% \item $O_4$:   
+\end{itemize}
+
+\bigskip
+\bigskip
+
+\begin{tabular}{c@{~~}r@{~~}r@{~~}r@{~~}r@{~~}r@{~~}r@{~~}c}
+\toprule
+$\Gamma$ & $\#$var~ & $\#$clause~ & $\#$conflict & $\#$propagation & time (s) \\
+\midrule
+$T$     & 62\,930 & 1\,171\,942 & 1\,082\,569 & 1\,338\,662\,627 & 243.07\\
+$O_1$ & 62\,930 & 5\,823\,078 &    228\,838 &     282\,774\,472 & 136.20\\
+$O_2$ & 75\,110 &     667\,005 &    211\,272 &      343\,388\,591 &  45.49\\
+$O_3$ & 75\,110 &     436\,047 &    234\,755 &      340\,387\,692 &  39.46\\
+% $O_4$ & 75\,110 &     444\,238 &    234\,587 &      342\,904\,580 &  39.41\\
+\bottomrule
+\end{tabular}
+
+}
+
 
 \frame{
 	\frametitle{Comparison to Existing Work}
@@ -1925,7 +2387,7 @@ SAT solving, using the same abstraction, is much faster
 
 Our $O(n^4)$ encoding for $k$-gons and $k$-holes is even faster
 \begin{itemize}
-\item $g(6) =17$ can be solved in 20 CPU seconds
+\item $g(6) =17$ can be solved in 10 CPU seconds
 \item Roughly 4 orders of magnitude faster than to original proof
 \end{itemize} 
 
@@ -1942,29 +2404,46 @@ Our $O(n^4)$ encoding for $k$-gons and $k$-holes is even faster
 %
 %\bigskip
 
-We developed a partitioning algorithm to split the problem
-into thousands much easier subproblems
+Partitioning to split the problem into easier subproblems
 \begin{itemize}
 \item Original problem UNSAT iff all subproblems UNSAT
-\item Two parameters: start ($a$) and length ($\ell$)
+\item Split on variables $O_{a,a+1,a+2}$ starting from the middle
+\item One parameter: the length $\ell$, roughly $1.83^\ell$ cubes
 \item Tested on: 24 points contain $6$-hole \structure{or} $7$-gon
 \end{itemize}
 
 \medskip
 
-\begin{tabular}{@{~~~}c@{~~~}r@{~~~}r@{~~~}r@{~~~}r@{~~~}r@{~~~}r@{~~~}c}
+\centering
+
+\begin{tabular}{@{~~~}r@{~~~}r@{~~~}r@{~~~}r@{~~~}r@{~~~}r@{~~~}c}
 \toprule
-$a$ & $\ell$~ & $\#$cubes & avg time (s) & max time (s) & total (h)\\
+ $\ell$~ & $\#$cubes & avg time (s) & max time (s) & total (h)\\
 \midrule
-2 & 21 & 312\,418 & 20.43~~  & 218.37~~~ & 1\,773.38~\\
-3 & 19 & 89\,384 & 43.25~~ & 410.09~~~ & 1\,073.91~\\
-4 & 17 & 25\,663 & 113.12~~ & 1\,080.84~~~ & 806.37~\\
-5 & 15 & 7393 & 355.46~~ & 2\,884.46~~~ & 729.98~\\
-6 & 13 & 2149 & 1\,223.58~~ & 8\,776.65~~~ & 730.41~\\
-7 & 11 & 629 & 4\,647.19~~ & 24\,232.12~~~ & 811.97~\\
-8 & 9 & 188 & 17\,414.70~~ & 55\,799.72~~~ & 909.44~\\
+21 & 312\,418 & 6.99~~~  & 66.86~~~ & 606.55~~~\\
+19 & 89\,384 & 13.61~~~ & 123.70~~~ & 337.96~~~\\
+17 & 25\,663 & 34.29~~~ & 293.10~~~ & 244.50~~~\\
+15 & 7393 & 112.61~~~ & 949.50~~~ & {\bf 231.27}~~~\\
+13 & 2149 & 431.26~~~ & 3\,347.59~~~ & 257.44~~~\\
+11 & 629 & 1\,847.46~~~ & 11\,844.05~~~ & 322.79~~~\\
+9 & 188 & 7\,745.14~~~ & 32\,329.05~~~ & 404.47~~~\\
+7 & 57 & 32\,905.90~~~ & 105\,937.76~~~ & 521.01~~~\\
 \bottomrule
 \end{tabular}
+
+%\begin{tabular}{@{~~~}c@{~~~}r@{~~~}r@{~~~}r@{~~~}r@{~~~}r@{~~~}r@{~~~}c}
+%\toprule
+%$a$ & $\ell$~ & $\#$cubes & avg time (s) & max time (s) & total (h)\\
+%\midrule
+%2 & 21 & 312\,418 & 20.43~~  & 218.37~~~ & 1\,773.38~\\
+%3 & 19 & 89\,384 & 43.25~~ & 410.09~~~ & 1\,073.91~\\
+%4 & 17 & 25\,663 & 113.12~~ & 1\,080.84~~~ & 806.37~\\
+%5 & 15 & 7393 & 355.46~~ & 2\,884.46~~~ & 729.98~\\
+%6 & 13 & 2149 & 1\,223.58~~ & 8\,776.65~~~ & 730.41~\\
+%7 & 11 & 629 & 4\,647.19~~ & 24\,232.12~~~ & 811.97~\\
+%8 & 9 & 188 & 17\,414.70~~ & 55\,799.72~~~ & 909.44~\\
+%\bottomrule
+%\end{tabular}
 	
 }
 
@@ -1975,7 +2454,17 @@ $a$ & $\ell$~ & $\#$cubes & avg time (s) & max time (s) & total (h)\\
 
 \parindent -15pt
 
-\input{figs/evaluation_tikz}
+\large
+
+\bigskip
+
+All sets of 24 points contain either a $6$-hole or a $7$-gon
+
+\normalsize
+
+\bigskip
+
+\input{figs/theorem2}
 
 
 
@@ -1985,20 +2474,21 @@ $a$ & $\ell$~ & $\#$cubes & avg time (s) & max time (s) & total (h)\\
 \newtheorem{conjecture}[theorem]{\translate{Conjecture}}
 
 \frame{
-	\frametitle{Main Theorem Summary}
+	\frametitle{Empty Hexagon Theorem Summary}
 	
 \large
 
-\begin{theorem}
-$h(6) = 30$
-\end{theorem}
+\bigskip
+
+
+\structure{Theorem}:  $h(6) = 30$
 %Solving the only remaining hole problem is within reach
 \begin{itemize}
-\item Partitioned problem using 312\,418 cubes $(a = 5, \ell = 21)$
-\item Hardest subproblem: 5\,457 seconds
-\item Total runtime: 37\,000 CPU hours on AWS
+\item Partitioned problem using 312\,418 cubes $(\ell = 21)$
+%\item Hardest subproblem: 5\,457 seconds
+\item Total runtime: 17\,000 CPU hours on AWS
 \item Linear speedups using 1\,000 machines
-\item Proof: 360 terabytes in unprocessed LRAT format
+\item Proof: 180 terabytes in unprocessed LRAT format
 \item Validated with formally-verified checker
 %\item Strong evidence that the conjecture holds
 %\item An initial run without proof construction finished
@@ -2015,6 +2505,27 @@ $h(6) = 30$
 	
 }
 
+\frame{
+	\frametitle{Verification}
+	
+	\large
+	
+	The optimization steps are validated or part of the proof
+	
+	\bigskip
+	
+	\structure{Concurrent} solving and proof checking for the first time
+	\begin{itemize}
+	\item The solver pipes the proof to a verified checker
+	\item This avoids storing/writing/reading huge files
+	\item Verified checker can easily catch up with the solver
+	\end{itemize}
+	
+	\bigskip
+	
+	CMU students have formalized and verified all parts 
+	in Lean
+}
 
 \section{Conclusions}
 \frame{\Large \tableofcontents[currentsection]}
@@ -2031,7 +2542,7 @@ $h(6) = 30$
 \bigskip
 
 SAT appears to be the most effective technology to 
-solve a range of problems in computational geometry. 
+solve a range of problems in computational geometry 
 
 \bigskip
 \bigskip
@@ -2040,7 +2551,7 @@ Many interesting open problems:
 \begin{itemize}
 \item Minimum number of $4$-gons / $5$-gons / $6$-gons
 \item Determine whether $g(7) = 33$
-\item Unbalanced configurations (points can be co-linear)
+\item Unbalanced configurations (points can be collinear)
 \end{itemize}
 	
 }
