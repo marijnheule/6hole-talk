@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{intersections}
+
+\newlength{\radius}
+\setlength{\radius}{1mm}
+
+\begin{document}
+    \begin{tikzpicture}
+        \coordinate (A) at (0,2);
+        \coordinate (B) at (1,3);
+        \coordinate (C) at (1,0);
+        \coordinate (D) at (3,2);
+        
+        % first line
+        \draw [gray,name path=line 1] (B) -- (C);
+        
+        % second line (defined as path)
+        \path[name path=line 2] (D) -- (A);	
+        
+        % find intersection of first and second line
+        \path [name intersections={of = line 1 and line 2}];
+        \coordinate (S)  at (intersection-1);
+        
+        % path a circle around this intersection for the arc
+        \path[name path=circle] (S) circle(\radius);
+        
+        % find intersections of second line and circle
+        \path [name intersections={of = circle and line 2}];
+        \coordinate (I1)  at (intersection-1);
+        \coordinate (I2)  at (intersection-2);
+        
+        \path (I1) arc (0:90:0.5\radius) coordinate (M1);
+        \path (M1) arc (0:180:0.5\radius) coordinate (M2);
+
+        % draw normal line segments
+        \draw[red, rounded corners=\radius] 
+            (D) -- (I1) 
+            (I1) arc (-90:-180:0.5\radius) (M1)
+            (M1) arc (0:180:0.5\radius) (M2)
+            (M2) arc (0:-90:0.5\radius) (I2)
+            (I2) -- (A) -- (0, -2);
+
+    \end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,53 @@
+    \begin{minipage}{.5\textwidth}
+\begin{tikzpicture}[scale=1.2]
+\newcommand{\x}{1.5}
+\vertex{.32}{6.56}{\x};
+\vertex{1.12}{6.24}{\x};
+\vertex{1.92}{6.72}{\x};
+  \draw[shift={(.32, 6.56)}, scale=3.414, thick,-]
+    (0, 0)
+     -- (.80, -.32);
+  \draw[shift={(1.12, 6.24001)}, scale=2.5322, thick, -]
+    (0, 0)
+     -- (.80, .48);
+  \draw[shift={(3.5081, 6.8788)}, scale=1.9926, thick, -]
+    (0, 0)
+     -- (-1.60, -.16);
+\vertexc{2.72}{5.12}{\x}{orange};
+\vertexc{2.72}{6.24}{\x}{cyan};
+\vertexc{2.72}{7.04}{\x}{green!50!black};
+\vertexc{2.72}{7.68}{\x}{structure};
+  \node
+     at (.16, 6.24) {$a$};
+  \node
+     at (.96, 5.92) {$b$};
+  \node
+     at (1.76, 6.88) {$c$};
+  \node
+     at (2.72, 8) {$d$};
+
+\vertex{.32}{6.56}{\x};
+\vertex{1.12}{6.24}{\x};
+\vertex{1.92}{6.72}{\x};
+\end{tikzpicture}
+
+\end{minipage}
+    \begin{minipage}{.4\textwidth}
+
+
+\begin{tabular}{c@{~~~~}c@{~~~~}c@{~~~~}c}
+\toprule
+$\orientp{a}{b}{c}$ & $\orientp{a}{b}{d}$ & $\orientp{a}{c}{d}$ & $\orientp{b}{c}{d}$\\
+\midrule
+\textcolor{structure}{$+$} & \textcolor{structure}{$+$} & \textcolor{structure}{$+$} & \textcolor{structure}{$+$}\\[-1pt]
+\textcolor{green!50!black}{$+$}      & \textcolor{green!50!black}{$+$}      & \textcolor{green!50!black}{$+$}      & \textcolor{green!50!black}{$-$}\\[-1pt]
+\textcolor{cyan}{$+$}        & \textcolor{cyan}{$+$}       & \textcolor{cyan}{$-$}         & \textcolor{cyan}{$-$}\\[-1pt]
+\textcolor{orange}{$+$}    & \textcolor{orange}{$-$}     & \textcolor{orange}{$-$}     & \textcolor{orange}{$-$}\\[-1pt]
+
+$-$ & $-$ & $-$ & $-$\\[-1pt]
+$-$ & $-$ & $-$ & $+$\\[-1pt]
+$-$ & $-$ & $+$ & $+$\\[-1pt]
+$-$ & $+$ & $+$ & $+$\\
+\bottomrule
+\end{tabular}
+\end{minipage}

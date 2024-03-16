@@ -1,0 +1,61 @@
+
+\begin{tikzpicture}[xscale=0.85]
+\node at (0,0.4) {$a$};
+\node at (0.8,1) {$b$};
+\node at (1.9,1.3) {$c$};
+\node at (2.7,1.3) {$d$};
+\node at (3.5,1) {$e$};
+\node at (4.1,0.3) {$f$};
+\node[draw,circle, thick, fill=blue, scale=0.3] (a) at (0,0) {};
+\node[draw,circle, thick, fill=blue, scale=0.3] (b) at (1,0.8) {};
+\node[draw,circle, thick, fill=blue, scale=0.3] (c) at (1.9,1) {};
+\node[draw,circle, thick, fill=blue, scale=0.3] (d) at (2.7,1) {};
+\node[draw,circle, thick, fill=blue, scale=0.3] (e) at (3.5,0.7) {};
+\node[draw,circle, thick, fill=blue, scale=0.3] (f) at (4,0) {};
+\draw[gray] (a) -- (b) -- (c) -- (a);
+\draw[gray] (a) -- (c) -- (d) -- (a);
+\draw[gray] (a) -- (d) -- (e) -- (a);
+\draw[gray] (a) -- (e) -- (f) -- (a);
+\draw[black, thick] (a) -- (b) -- (c) -- (d) -- (e) -- (f) -- (a);
+\node at (0,-0.5) {~~};
+\end{tikzpicture}
+\hfil
+\begin{tikzpicture}[xscale=0.85]
+\node at (0,0.4) {$a$};
+\node at (0.8,1) {$b$};
+\node at (1.6,-0.9) {$c$};
+\node at (2.6,1.3) {$d$};
+\node at (3.5,1) {$e$};
+\node at (4.1,0.4) {$f$};
+\node[draw,circle, thick, fill=blue, scale=0.3] (a) at (0,0) {};
+\node[draw,circle, thick, fill=blue, scale=0.3] (b) at (1,0.7) {};
+\node[draw,circle, thick, fill=blue, scale=0.3] (c) at (1.5,-0.6) {};
+\node[draw,circle, thick, fill=blue, scale=0.3] (d) at (2.5,1) {};
+\node[draw,circle, thick, fill=blue, scale=0.3] (e) at (3.3,0.6) {};
+\node[draw,circle, thick, fill=blue, scale=0.3] (f) at (4,0) {};
+\draw[gray] (a) -- (b) -- (d) -- (a);
+\draw[gray] (a) -- (c) -- (f) -- (a);
+\draw[gray] (a) -- (d) -- (e) -- (a);
+\draw[gray] (a) -- (e) -- (f) -- (a);
+\draw[black, thick] (a) -- (b) -- (d) -- (e) -- (f) -- (c) -- (a);
+\end{tikzpicture}
+\hfil
+\begin{tikzpicture}[xscale=0.85]
+\node at (0,0.4) {$a$};
+\node at (0.8,1) {$b$};
+\node at (1.9,-1.3) {$c$};
+\node at (3.1,1) {$d$};
+\node at (3.1,-1) {$e$};
+\node at (3.6,0.3) {$f$};
+\node[draw,circle, thick, fill=blue, scale=0.3] (a) at (0,0) {};
+\node[draw,circle, thick, fill=blue, scale=0.3] (b) at (1,0.8) {};
+\node[draw,circle, thick, fill=blue, scale=0.3] (c) at (2,-0.9) {};
+\node[draw,circle, thick, fill=blue, scale=0.3] (d) at (2.8,0.7) {};
+\node[draw,circle, thick, fill=blue, scale=0.3] (e) at (3.1,-0.5) {};
+\node[draw,circle, thick, fill=blue, scale=0.3] (f) at (3.5,0) {};
+\draw[gray] (a) -- (b) -- (d) -- (a);
+\draw[gray] (a) -- (c) -- (e) -- (a);
+\draw[gray] (a) -- (e) -- (f) -- (a);
+\draw[gray] (a) -- (d) -- (f) -- (a);
+\draw[black, thick] (a) -- (b) -- (d) -- (f) -- (e) -- (c) -- (a);
+\end{tikzpicture}
